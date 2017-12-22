@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'exc-root',
-  templateUrl: './app.component.html',
-  styles: []
+  template: '<exc-user-list></exc-user-list>'
 })
 export class AppComponent {
   title = 'exc';
