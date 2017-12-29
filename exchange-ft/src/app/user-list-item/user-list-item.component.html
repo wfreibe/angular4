@@ -1,3 +1,6 @@
+<img class="ui tiny image"
+     *ngIf="user.thumbnails"
+     [src]="user.thumbnails[0].url">
 <div class="content">
   <div class="header">email: {{ user.emailAddress }}</div>
   <div class="description">first name: {{ user.firstName }}</div>

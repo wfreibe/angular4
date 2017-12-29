@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../shared/user';
+import { User, Thumbnail } from '../shared/user';
 
 @Component({
   selector: 'exc-user-list',
@@ -20,7 +20,9 @@ export class UserListComponent implements OnInit {
         'Willkommen screenname!',
         'Vorname',
         'Nachname',
-        'Programmer'
+        'Programmer',
+        5,
+        [new Thumbnail('https://www.shareicon.net/data/128x128/2015/09/24/106427_man_512x512.png', 'Vorname Nachname')],
       )
     ];
   }

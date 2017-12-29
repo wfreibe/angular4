@@ -1,3 +1,5 @@
+import { Thumbnail } from './thumbnail';
+export { Thumbnail } from './thumbnail';
 export class User {
   constructor(
     public userId: number,
@@ -8,6 +10,8 @@ export class User {
     public greeting: string,
     public firstName: string,
     public lastName: string,
-    public jobTitle: string
+    public jobTitle: string,
+    public rating?: number,
+    public thumbnails?: Thumbnail[]
   ) { }
 }
