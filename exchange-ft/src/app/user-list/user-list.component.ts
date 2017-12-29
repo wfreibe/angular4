@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User, Thumbnail } from '../shared/user';
 
 @Component({
@@ -8,6 +8,7 @@ import { User, Thumbnail } from '../shared/user';
 export class UserListComponent implements OnInit {
 
   users: User[];
+  @Output() showDetailsEvent = new EventEmitter<User>();
 
   ngOnInit() {
     this.users = [
@@ -25,6 +26,10 @@ export class UserListComponent implements OnInit {
         [new Thumbnail('https://www.shareicon.net/data/128x128/2015/09/24/106427_man_512x512.png', 'Vorname Nachname')],
       )
     ];
+  }
+
+  showDetails(user: User) {
+    this.showDetailsEvent.emit(user);
   }
 }
 
