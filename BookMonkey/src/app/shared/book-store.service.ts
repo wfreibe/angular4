@@ -1,41 +1,61 @@
 import { Injectable } from '@angular/core';
-import { Book, Thumbnail} from './book';
-
+import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import { Book } from './book';
+import { BookFactory } from './book-factory';
 @Injectable()
 export class BookStoreService {
   books: Book[];
+  private api = 'https://book-monkey2-api.angular-buch.com';
+  private headers: Headers = new Headers();
 
-  constructor() {
+  constructor(private http: Http) {
+    this.headers.append('Content-Type', 'application/json');
+  }
 
-    this.books = [
-      new Book(
-        '9783864903571',
-        'Angular',
-        ['Johannes Hoppe', 'Danny Koppenhagen', 'Ferdinand Malcher', 'Gregor Woiwode'],
-        new Date(2017, 3, 1),
-        'Grundlagen, fortgeschrittene Techniken und Best Practices mit TypeScript - ab Angular 4, inklusive NativeScript und Redux',
-        5,
-        [new Thumbnail('https://www.shareicon.net/data/128x128/2015/09/24/106427_man_512x512.png', 'Buchcover')],
-        'Mit Angular setzen Sie auf ein modernes und modulares...'
-      ),
-      new Book(
-        '9783864901546',
-        'AngularJS',
-        ['Philipp Tarasiewicz', 'Robin Böhm'],
-        new Date(2014, 5, 29),
-        'Eine praktische Einführung',
-        5,
-        [new Thumbnail('https://www.shareicon.net/data/128x128/2016/12/02/859331_man_512x512.png', 'Buchcover')],
-        'Dieses Buch führt Sie anhand eines zusammenhängenden Beispielprojekts...'
+  private errorHandler(error: Error | any): Observable<any> {
+    return Observable.throw(error);
+  }
+
+  getAll(): Observable<Array<Book>> {
+    return this.http
+      .get(`${this.api}/books`)
+      .retry(3)
+      .map(response => response.json())
+      .map(rawBooks => rawBooks
+      .map(rawBook => BookFactory.fromObject(rawBook))
       )
-    ];
+      .catch(this.errorHandler);
   }
 
-  getAll() {
-    return this.books;
+  create(book: Book): Observable<any> {
+    return this.http
+      .post(`${this.api}/book`, JSON.stringify(book), { headers: this.headers })
+  .catch(this.errorHandler);
   }
 
-  getSingle(isbn) {
-    return this.books.find(book => book.isbn === isbn);
+  update(book: Book): Observable<any> {
+    return this.http
+      .put(`${this.api}/book/${book.isbn}`, JSON.stringify(book), { headers: this.headers })
+  .catch(this.errorHandler);
+  }
+
+  remove(isbn: string): Observable<any> {
+    return this.http
+      .delete(`${this.api}/book/${isbn}`)
+      .catch(this.errorHandler);
+  }
+
+  getSingle(isbn: string): Observable<Book> {
+    return this.http
+      .get(`${this.api}/book/${isbn}`)
+      .retry(3)
+      .map(response => response.json())
+      .map(rawBook => BookFactory.fromObject(rawBook))
+      .catch(this.errorHandler);
   }
 }
