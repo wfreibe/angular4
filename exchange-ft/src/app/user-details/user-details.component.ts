@@ -5,6 +5,8 @@ import { User } from '../shared/user';
 import { UserFactory } from '../shared/user-factory';
 import { UserStoreService } from '../shared/user-store.service';
 
+import { environment } from '../../environments/environment';
+
 @Component({
   selector: 'exc-user-details',
   templateUrl: './user-details.component.html'
@@ -32,5 +34,8 @@ export class UserDetailsComponent implements OnInit {
 
   getRating(num: number) {
     return new Array(num);
+  }
+  getUserImage() {
+    return environment.pictureSource + this.user.portraitId;
   }
 }

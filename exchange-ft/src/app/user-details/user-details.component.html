@@ -9,7 +9,7 @@
     <div class="ui grid">
       <div class="four wide column">
       <div class="four wide column">
-        <h4 class="ui header">Screen nameX</h4>
+        <h4 class="ui header">Screen name</h4>
         {{ user?.screenName }}
       </div>
       <div class="four wide column">
@@ -28,7 +28,9 @@
   </div>
   <div class="sixteen wide column">
     <div class="ui small images">
-     <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
+      <img [src]="getUserImage()">
     </div>
   </div>
 </div>
+  <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
+

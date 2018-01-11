@@ -13,8 +13,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class UserStoreService {
   users: User[];
-
-  // private api = 'http://localhost:8080/api/v1';
+  private api = environment.apiEndpoint;
   // https://stackoverflow.com/questions/38286250/exception-response-with-status-0-for-url-null-in-angular2
 
   private headers: Headers = new Headers();
@@ -32,7 +31,7 @@ export class UserStoreService {
   getAll(): Observable<Array<User>> {
     // debugger
     return this.http
-      .get(`${environment.apiEndpoint}/users`)
+      .get(`${this.api}/users`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawUsers => rawUsers
@@ -41,43 +40,42 @@ export class UserStoreService {
       .catch(this.errorHandler);
   }
 
-  /*
-  getAll() {
-    return this.users;
-  }
-  */
-
-  /*
-  getSingle(userId) {
-    // use the parseInt or parseFloat functions, or simply use the unary + operator
-    return this.users.find(user => user.userId === +userId);
-  }*/
-
   create(user: User): Observable<any> {
     return this.http
-      .post(`${environment.apiEndpoint}/users`, JSON.stringify(user), { headers: this.headers })
+      .post(`${this.api}/users`, JSON.stringify(user), { headers: this.headers })
       .catch(this.errorHandler);
   }
 
   update(user: User): Observable<any> {
     return this.http
-      .put(`${environment.apiEndpoint}/users/${user.userId}`, JSON.stringify(user), { headers: this.headers })
+      .put(`${this.api}/users/${user.userId}`, JSON.stringify(user), { headers: this.headers })
       .catch(this.errorHandler);
   }
 
   remove(userId: string): Observable<any> {
     return this.http
-      .delete(`${environment.apiEndpoint}/users/${userId}`)
+      .delete(`${this.api}/users/${userId}`)
       .catch(this.errorHandler);
   }
 
   getSingle(userId: string): Observable<User> {
     // debugger
     return this.http
-      .get(`${environment.apiEndpoint}/users/${userId}`)
+      .get(`${this.api}/users/${userId}`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawUser => UserFactory.fromObject(rawUser))
       .catch(this.errorHandler);
   }
+
+  /*
+  getAll() {
+    return this.users;
+  }
+  */
+  /*
+  getSingle(userId) {
+    // use the parseInt or parseFloat functions, or simply use the unary + operator
+    return this.users.find(user => user.userId === +userId);
+  }*/
 }

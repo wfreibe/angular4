@@ -12,6 +12,7 @@ export class User {
     public lastName: string,
     public jobTitle: string,
     public rating?: number,
+    public portraitId?: number,
     public thumbnails?: Thumbnail[]
   ) { }
 }
