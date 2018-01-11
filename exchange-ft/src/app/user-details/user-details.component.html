@@ -1,48 +1,34 @@
 <div class="ui grid" *ngIf="user">
   <div class="four wide column">
-    <img class="ui large image" [src]="user.thumbnails[0].url">
+    <!--<img class="ui large image" [src]="user?.thumbnails[0].url">-->
   </div>
   <div class="twelve wide column">
-    <h1 class="ui header">{{ user.userId }}</h1>
-    <h3 class="ui header">{{ user.contactId }}</h3>
+    <h1 class="ui header">{{ user?.userId }}</h1>
+    <h3 class="ui header">{{ user?.contactId }}</h3>
     <div class="ui divider"></div>
     <div class="ui grid">
       <div class="four wide column">
       <div class="four wide column">
-        <h4 class="ui header">Screen name</h4>
-        {{ user.screenName }}
+        <h4 class="ui header">Screen nameX</h4>
+        {{ user?.screenName }}
       </div>
       <div class="four wide column">
         <h4 class="ui header">email</h4>
-        {{ user.emailAddress }}
+        {{ user?.emailAddress }}
       </div>
       <div class="four wide column">
         <h4 class="ui header">Rating</h4>
-        <i *ngFor="let r of getRating(user.rating)" class="yellow star icon"></i>
+        <i *ngFor="let r of getRating(user?.rating)" class="yellow star icon"></i>
       </div>
     </div>
   </div>
   <div class="sixteen wide column">
     <h3 class="ui header">Name</h3>
-    {{ user.firstName }} {{ user.lastName }}
+    {{ user?.firstName }} {{ user?.lastName }}
   </div>
   <div class="sixteen wide column">
     <div class="ui small images">
-      <img *ngFor="let thumbnail of user.thumbnails" [src]="thumbnail.url">
+     <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
     </div>
   </div>
 </div>
-
-  <!--<button (click)="showUserList()" class="ui red button">Zurück zur Userliste</button>-->
-  <!--
-  public userId: number,
-  public contactId: number,
-  public screenName: string,
-  public emailAddress: string,
-  public languageId: string,
-  public greeting: string,
-  public firstName: string,
-  public lastName: string,
-  public jobTitle: string,
-  public thumbnails?: Thumbnail[],
-  -->

@@ -10,7 +10,8 @@ export class UserListComponent implements OnInit {
   users: User[];
   constructor(private us: UserStoreService) {}
   ngOnInit() {
-    this.users = this.us.getAll();
+    // this.users = this.us.getAll();
+    this.us.getAll().subscribe(res => this.users = res);
   }
 }
 

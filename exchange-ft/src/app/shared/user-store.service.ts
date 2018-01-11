@@ -1,34 +1,83 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { User, Thumbnail } from './user';
+import { UserFactory } from './user-factory';
+
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserStoreService {
   users: User[];
 
-  constructor() {
-    this.users = [
-      new User(
-        35690,
-        35691,
-        'screenname',
-        'wxxxxxxx@xxxxxx.com',
-        'de_DE',
-        'Willkommen screenname!',
-        'Vorname',
-        'Nachname',
-        'Programmer',
-        5,
-        [new Thumbnail('https://www.shareicon.net/data/128x128/2015/09/24/106427_man_512x512.png', 'Vorname Nachname')],
-      )
-    ];
+  // private api = 'http://localhost:8080/api/v1';
+  // https://stackoverflow.com/questions/38286250/exception-response-with-status-0-for-url-null-in-angular2
+
+  private headers: Headers = new Headers();
+
+  constructor(private http: Http) {
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append(environment.authorizationkey, environment.authorizationvalue);
   }
 
+  private errorHandler(error: Error | any): Observable<any> {
+    alert(error);
+    return Observable.throw(error);
+  }
+
+  getAll(): Observable<Array<User>> {
+    // debugger
+    return this.http
+      .get(`${environment.apiEndpoint}/users`)
+      .retry(3)
+      .map(response => response.json())
+      .map(rawUsers => rawUsers
+        .map(rawUser => UserFactory.fromObject(rawUser))
+      )
+      .catch(this.errorHandler);
+  }
+
+  /*
   getAll() {
     return this.users;
   }
+  */
 
+  /*
   getSingle(userId) {
     // use the parseInt or parseFloat functions, or simply use the unary + operator
     return this.users.find(user => user.userId === +userId);
+  }*/
+
+  create(user: User): Observable<any> {
+    return this.http
+      .post(`${environment.apiEndpoint}/users`, JSON.stringify(user), { headers: this.headers })
+      .catch(this.errorHandler);
+  }
+
+  update(user: User): Observable<any> {
+    return this.http
+      .put(`${environment.apiEndpoint}/users/${user.userId}`, JSON.stringify(user), { headers: this.headers })
+      .catch(this.errorHandler);
+  }
+
+  remove(userId: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiEndpoint}/users/${userId}`)
+      .catch(this.errorHandler);
+  }
+
+  getSingle(userId: string): Observable<User> {
+    // debugger
+    return this.http
+      .get(`${environment.apiEndpoint}/users/${userId}`)
+      .retry(3)
+      .map(response => response.json())
+      .map(rawUser => UserFactory.fromObject(rawUser))
+      .catch(this.errorHandler);
   }
 }

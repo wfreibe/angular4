@@ -4,4 +4,8 @@
      *ngFor="let b of users"
      [user]="b"
      [routerLink]="b.userId"></a>
+  <div *ngIf="!users" class="ui active dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+  <p *ngIf="users && !users.length">Es wurden noch keine User eingetragen.</p>
 </div>
