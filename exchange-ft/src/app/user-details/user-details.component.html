@@ -1,36 +1,41 @@
 <div class="ui grid" *ngIf="user">
-  <div class="four wide column">
-    <!--<img class="ui large image" [src]="user?.thumbnails[0].url">-->
+
+  <div class="three wide column" style="margin:20px;">
+    <img class="ui small images" [src]="getUserImage()">
   </div>
+
   <div class="twelve wide column">
-    <h1 class="ui header">{{ user?.userId }}</h1>
-    <h3 class="ui header">{{ user?.contactId }}</h3>
+
+    <h1 class="ui header">{{ user?.screenName }}</h1>
+    <h3 class="ui header">{{ user?.emailAddress }}</h3>
+
     <div class="ui divider"></div>
+
     <div class="ui grid">
       <div class="four wide column">
-      <div class="four wide column">
-        <h4 class="ui header">Screen name</h4>
-        {{ user?.screenName }}
+        <h4 class="ui header">User Id</h4>
+        {{ user?.userId }}
+        <h4 class="ui header">Contact Id</h4>
+        {{ user?.contactId }}
       </div>
-      <div class="four wide column">
-        <h4 class="ui header">email</h4>
-        {{ user?.emailAddress }}
-      </div>
+
       <div class="four wide column">
         <h4 class="ui header">Rating</h4>
         <i *ngFor="let r of getRating(user?.rating)" class="yellow star icon"></i>
       </div>
+
     </div>
-  </div>
-  <div class="sixteen wide column">
-    <h3 class="ui header">Name</h3>
-    {{ user?.firstName }} {{ user?.lastName }}
-  </div>
-  <div class="sixteen wide column">
-    <div class="ui small images">
-      <img [src]="getUserImage()">
+
+    <div class="ui divider"></div>
+
+    <div class="sixteen wide column">
+      <h4 class="ui header">Name</h4>
+      {{ user?.firstName }} {{ user?.lastName }}
     </div>
+
   </div>
+
 </div>
-  <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
+
+<!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
 
