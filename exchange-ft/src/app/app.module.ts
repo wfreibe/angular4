@@ -10,6 +10,7 @@ import { UserListItemComponent } from './user-list-item/user-list-item.component
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserStoreService } from './shared/user-store.service';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeComponent } from './home/home.component';
     UserListComponent,
     UserListItemComponent,
     UserDetailsComponent,
-    HomeComponent
+    HomeComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,17 @@ export class BookStoreService {
       .catch(this.errorHandler);
   }
 
+  getAllSearch(searchTerm: string): Observable<Array<Book>> {
+    return this.http
+      .get(`${this.api}/books/search/${searchTerm}`)
+      .retry(3)
+      .map(response => response.json())
+      .map(rawBooks => rawBooks
+        .map(rawBook => BookFactory.fromObject(rawBook))
+      )
+      .catch(this.errorHandler);
+  }
+
   create(book: Book): Observable<any> {
     return this.http
       .post(`${this.api}/book`, JSON.stringify(book), { headers: this.headers })

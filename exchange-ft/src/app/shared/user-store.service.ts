@@ -40,6 +40,18 @@ export class UserStoreService {
       .catch(this.errorHandler);
   }
 
+  getAllSearch(searchTerm: string): Observable<Array<User>> {
+    // debugger
+    return this.http
+      .get(`${this.api}/users/search/${searchTerm}`, { headers: this.headers })
+      .retry(3)
+      .map(response => response.json())
+      .map(rawUsers => rawUsers
+        .map(rawUser => UserFactory.fromObject(rawUser))
+      )
+      .catch(this.errorHandler);
+  }
+
   create(user: User): Observable<any> {
     return this.http
       .post(`${this.api}/users`, JSON.stringify(user), { headers: this.headers })
