@@ -44,6 +44,7 @@ export class BookStoreService {
   }
 
   create(book: Book): Observable<any> {
+    //console.log(JSON.stringify(book));
     return this.http
       .post(`${this.api}/book`, JSON.stringify(book), { headers: this.headers })
   .catch(this.errorHandler);

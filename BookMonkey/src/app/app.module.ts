@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule} from './app-routing.module';
+import { DateValueAccessorModule} from 'angular-date-value-accessor';
 
 import { AppComponent } from './app.component';
 import { BookListComponent } from './book-list/book-list.component';
@@ -11,6 +13,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookStoreService } from './shared/book-store.service';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { BookFormComponent } from './book-form/book-form.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,16 @@ import { SearchComponent } from './search/search.component';
     BookListItemComponent,
     BookDetailsComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
+    FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    DateValueAccessorModule
   ],
   providers: [BookStoreService],
   bootstrap: [AppComponent]
