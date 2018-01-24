@@ -26,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: UserFormComponent
+  },
+  {
+    path: 'admin/:userId',
+    component: UserFormComponent
   }
 ];
 

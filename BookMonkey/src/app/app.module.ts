@@ -5,6 +5,7 @@ import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule} from './app-routing.module';
 import { DateValueAccessorModule} from 'angular-date-value-accessor';
+import { ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BookListComponent } from './book-list/book-list.component';
@@ -31,7 +32,8 @@ import { BookFormComponent } from './book-form/book-form.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    DateValueAccessorModule
+    DateValueAccessorModule,
+    ReactiveFormsModule
   ],
   providers: [BookStoreService],
   bootstrap: [AppComponent]

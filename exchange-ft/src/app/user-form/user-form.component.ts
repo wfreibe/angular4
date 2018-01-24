@@ -1,5 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router} from '@angular/router';
+import { FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
+
 import { User } from '../shared/user';
 import { UserFactory } from '../shared/user-factory';
 import { UserStoreService } from '../shared/user-store.service';
@@ -9,20 +11,59 @@ import { UserFormErrorMessages } from './user-form-error-messages';
   templateUrl: './user-form.component.html'
 })
 export class UserFormComponent implements OnInit {
-  @ViewChild('myForm') myForm: NgForm;
-  user = UserFactory.empty();
 
+  user = UserFactory.empty();
   errors: { [key: string]: string } = {};
-  constructor(private us: UserStoreService) { }
+  isUpdatingUser = false;
+  myForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private us: UserStoreService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    const userId = this.route.snapshot.params['userId'];
+    if (userId) {
+      this.isUpdatingUser = true;
+      this.us.getSingle(userId)
+        .subscribe(user => {
+          this.user = user;
+          this.initUser();
+        });
+    }
+    this.initUser();
+  }
+
+  initUser() {
+    // this.buildAuthorsArray();
+    // this.buildThumbnailsArray();
+
+    this.myForm = this.fb.group({
+      screenName: [this.user.screenName, Validators.required],
+      emailAddress: [this.user.emailAddress, [Validators.required, Validators.email]],
+      greeting: this.user.greeting,
+      /*
+      isbn: [this.book.isbn, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(13)
+      ]],
+      */
+      firstName: [this.user.firstName, Validators.required],
+      lastName: [this.user.lastName, Validators.required],
+      jobTitle: [this.user.jobTitle, Validators.required],
+      userId: [this.user.userId],
+    });
     this.myForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
 
   updateErrorMessages() {
     this.errors = {};
     for (const message of UserFormErrorMessages) {
-      const control = this.myForm.form.get(message.forControl);
+      const control = this.myForm.get(message.forControl);
       if (control &&
         control.dirty &&
         control.invalid &&
@@ -34,10 +75,16 @@ export class UserFormComponent implements OnInit {
   }
 
   submitForm() {
-    const user = UserFactory.fromObject(this.user);
-    this.us.create(user).subscribe(res => {
-      this.user = UserFactory.empty();
-      this.myForm.reset(UserFactory.empty());
-    });
+    const user: User = UserFactory.fromObject(this.myForm.value);
+    if (this.isUpdatingUser) {
+      this.us.update(user).subscribe(res => {
+        this.router.navigate(['../../users', user.userId], {relativeTo: this.route });
+      });
+    } else {
+      this.us.create(user).subscribe(res => {
+        this.user = UserFactory.empty();
+        this.myForm.reset(UserFactory.empty());
+      });
+    }
   }
 }

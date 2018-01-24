@@ -59,14 +59,20 @@ export class UserStoreService {
   }
 
   update(user: User): Observable<any> {
+
+    // console.log(user.userId);
+
     return this.http
       .put(`${this.api}/users/${user.userId}`, JSON.stringify(user), { headers: this.headers })
       .catch(this.errorHandler);
   }
 
   remove(userId: string): Observable<any> {
+
+    // console.log(userId);
+
     return this.http
-      .delete(`${this.api}/users/${userId}`)
+      .delete(`${this.api}/users/${userId}`, { headers: this.headers })
       .catch(this.errorHandler);
   }
 

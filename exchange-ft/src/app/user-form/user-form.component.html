@@ -1,13 +1,10 @@
 <h1>Userformular</h1>
 <form class="ui large form"
-      #myForm="ngForm"
+      [formGroup]="myForm"
       (ngSubmit)="submitForm()">
   <div class="field">
     <label>Screen Name</label>
-    <input
-      name="screenName"
-      [(ngModel)]="user.screenName"
-      required>
+    <input formControlName="screenName">
     <div *ngIf="errors.screenName" class="ui negative message">
       {{ errors.screenName }}
     </div>
@@ -15,10 +12,7 @@
 
   <div class="field">
     <label>E-Mail Adresse</label>
-    <input
-      name="emailAddress"
-      [(ngModel)]="user.emailAddress"
-      required>
+    <input formControlName="emailAddress">
     <div *ngIf="errors.emailAddress" class="ui negative message">
       {{ errors.emailAddress }}
     </div>
@@ -26,10 +20,7 @@
 
   <div class="field">
     <label>Greeting</label>
-    <input
-      name="greeting"
-      [(ngModel)]="user.greeting"
-      required>
+    <input formControlName="greeting">
     <div *ngIf="errors.greeting" class="ui negative message">
       {{ errors.greeting }}
     </div>
@@ -37,10 +28,7 @@
 
   <div class="field">
     <label>Vorname</label>
-    <input
-      name="firstName"
-      [(ngModel)]="user.firstName"
-      required>
+    <input formControlName="firstName">
     <div *ngIf="errors.firstName" class="ui negative message">
       {{ errors.firstName }}
     </div>
@@ -48,10 +36,7 @@
 
   <div class="field">
     <label>Nachname</label>
-    <input
-      name="lastName"
-      [(ngModel)]="user.lastName"
-      required>
+    <input formControlName="lastName">
     <div *ngIf="errors.lastName" class="ui negative message">
       {{ errors.lastName }}
     </div>
@@ -59,14 +44,13 @@
 
   <div class="field">
     <label>Beruf</label>
-    <input
-      name="jobTitle"
-      [(ngModel)]="user.jobTitle"
-      required>
+    <input formControlName="jobTitle">
     <div *ngIf="errors.jobTitle" class="ui negative message">
       {{ errors.jobTitle }}
     </div>
   </div>
+
+  <input formControlName="userId" type="hidden">
 
   <button type="submit" class="ui button" [disabled]="myForm.invalid">Speichern</button>
 </form>

@@ -33,9 +33,24 @@
       {{ user?.firstName }} {{ user?.lastName }}
     </div>
 
+    <div class="sixteen wide column">
+      <h4 class="ui header">Beruf</h4>
+      {{ user?.jobTitle }}
+    </div>
+
   </div>
 
 </div>
+
+<button class="ui tiny red labeled icon button"
+        (click)="removeUser()">
+  <i class="remove icon"></i> User löschen
+</button>
+
+<a class="ui tiny yellow labeled icon button"
+   [routerLink]="['../../admin', user?.userId]">
+  <i class="write icon"></i> User bearbeiten
+</a>
 
 <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
 
