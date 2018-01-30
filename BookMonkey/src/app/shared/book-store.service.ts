@@ -44,7 +44,7 @@ export class BookStoreService {
   }
 
   create(book: Book): Observable<any> {
-    //console.log(JSON.stringify(book));
+    // console.log(JSON.stringify(book));
     return this.http
       .post(`${this.api}/book`, JSON.stringify(book), { headers: this.headers })
   .catch(this.errorHandler);
@@ -68,6 +68,13 @@ export class BookStoreService {
       .retry(3)
       .map(response => response.json())
       .map(rawBook => BookFactory.fromObject(rawBook))
+      .catch(this.errorHandler);
+  }
+
+  check(isbn: string): Observable<Boolean> {
+    return this.http
+      .get(`${this.api}/book/${isbn}/check`)
+      .map(response => response.json())
       .catch(this.errorHandler);
   }
 }

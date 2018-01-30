@@ -6,6 +6,8 @@ import { User } from '../shared/user';
 import { UserFactory } from '../shared/user-factory';
 import { UserStoreService } from '../shared/user-store.service';
 import { UserFormErrorMessages } from './user-form-error-messages';
+import { UserValidators} from '../shared/user.validators';
+
 @Component({
   selector: 'exc-user-form',
   templateUrl: './user-form.component.html'
@@ -43,7 +45,12 @@ export class UserFormComponent implements OnInit {
 
     this.myForm = this.fb.group({
       screenName: [this.user.screenName, Validators.required],
-      emailAddress: [this.user.emailAddress, [Validators.required, Validators.email]],
+      // emailAddress: [this.user.emailAddress, [Validators.required, Validators.email]],
+      emailAddress: [this.user.emailAddress, [
+        Validators.required,
+        Validators.email
+      ], this.isUpdatingUser ? null :
+        UserValidators.emailExists(this.us)],
       greeting: this.user.greeting,
       /*
       isbn: [this.book.isbn, [

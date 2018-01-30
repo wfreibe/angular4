@@ -59,9 +59,6 @@ export class UserStoreService {
   }
 
   update(user: User): Observable<any> {
-
-    // console.log(user.userId);
-
     return this.http
       .put(`${this.api}/users/${user.userId}`, JSON.stringify(user), { headers: this.headers })
       .catch(this.errorHandler);
@@ -83,6 +80,14 @@ export class UserStoreService {
       .retry(3)
       .map(response => response.json())
       .map(rawUser => UserFactory.fromObject(rawUser))
+      .catch(this.errorHandler);
+  }
+
+  check(email: string): Observable<Boolean> {
+    // debugger
+    return this.http
+      .get(`${this.api}/users/${email}/check`, { headers: this.headers })
+      .map(response => response.json())
       .catch(this.errorHandler);
   }
 
