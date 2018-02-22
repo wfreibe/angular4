@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID} from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule} from './app-routing.module';
@@ -15,6 +15,9 @@ import { BookStoreService } from './shared/book-store.service';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { BookFormComponent } from './book-form/book-form.component';
+import { IsbnPipe } from './shared/isbn.pipe';
+import { ZoomDirective } from './shared/zoom.directive';
+import { DelayDirective } from './shared/delay.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { BookFormComponent } from './book-form/book-form.component';
     BookDetailsComponent,
     HomeComponent,
     SearchComponent,
-    BookFormComponent
+    BookFormComponent,
+    IsbnPipe,
+    ZoomDirective,
+    DelayDirective
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,10 @@ import { BookFormComponent } from './book-form/book-form.component';
     DateValueAccessorModule,
     ReactiveFormsModule
   ],
-  providers: [BookStoreService],
+  providers: [
+    BookStoreService,
+    { provide: LOCALE_ID, useValue: 'de' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

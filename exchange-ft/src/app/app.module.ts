@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { AppRoutingModule} from './app-routing.module';
@@ -15,6 +15,7 @@ import { UserStoreService } from './shared/user-store.service';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { ZoomDirective } from './shared/zoom.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserFormComponent } from './user-form/user-form.component';
     UserDetailsComponent,
     HomeComponent,
     SearchComponent,
-    UserFormComponent
+    UserFormComponent,
+    ZoomDirective
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,10 @@ import { UserFormComponent } from './user-form/user-form.component';
     DateValueAccessorModule,
     ReactiveFormsModule
   ],
-  providers: [UserStoreService],
+  providers: [
+    UserStoreService,
+    { provide: LOCALE_ID, useValue: 'de'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
