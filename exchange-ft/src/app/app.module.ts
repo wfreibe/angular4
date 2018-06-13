@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { UserStoreService } from './shared/user-store.service';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
-import {UserModule} from './user/user.module';
-import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +16,7 @@ import {AdminModule} from './admin/admin.module';
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule,
-    UserModule,
-    AdminModule
+    AppRoutingModule
   ],
   providers: [
     UserStoreService,

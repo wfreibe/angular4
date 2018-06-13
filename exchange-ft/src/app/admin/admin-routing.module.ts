@@ -4,11 +4,11 @@ import {UserFormComponent} from '../admin/user-form/user-form.component';
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: UserFormComponent
   },
   {
-    path: 'admin/:userId',
+    path: ':userId',
     component: UserFormComponent
   }
 ];
