@@ -1,6 +1,6 @@
 import { FormControl, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { BookStoreService } from '../shared/book-store.service';
+import { BookStoreService } from '../../shared/book-store.service';
 
 export class BookValidators {
   static isbnFormat(control: FormControl): { [error: string]: any } {
