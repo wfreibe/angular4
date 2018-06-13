@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
 
-import { User } from '../shared/user';
-import { UserFactory } from '../shared/user-factory';
-import { UserStoreService } from '../shared/user-store.service';
+import { User } from '../../shared/user';
+import { UserFactory } from '../../shared/user-factory';
+import { UserStoreService } from '../../shared/user-store.service';
 import { UserFormErrorMessages } from './user-form-error-messages';
 import { UserValidators} from '../shared/user.validators';
 

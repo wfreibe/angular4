@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../shared/user';
-import { UserStoreService } from '../shared/user-store.service';
+import { User } from '../../shared/user';
+import { UserStoreService } from '../../shared/user-store.service';
 
 @Component({
   selector: 'exc-user-list',

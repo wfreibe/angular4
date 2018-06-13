@@ -1,6 +1,6 @@
 import { FormControl, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { UserStoreService } from '../shared/user-store.service';
+import { UserStoreService } from '../../shared/user-store.service';
 
 export class UserValidators {
 

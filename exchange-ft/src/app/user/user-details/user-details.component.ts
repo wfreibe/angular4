@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User } from '../shared/user';
-import { UserFactory } from '../shared/user-factory';
-import { UserStoreService } from '../shared/user-store.service';
+import { User } from '../../shared/user';
+import { UserFactory } from '../../shared/user-factory';
+import { UserStoreService } from '../../shared/user-store.service';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'exc-user-details',

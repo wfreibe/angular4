@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../shared/user';
-import { environment } from '../../environments/environment';
+import { User } from '../../shared/user';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'a.exc-user-list-item',
