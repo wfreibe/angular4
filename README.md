@@ -1,3 +1,3 @@
 # angular4
 
-test...
+This is a learning project for NG
