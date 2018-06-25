@@ -1,6 +1,23 @@
-<div class="ui three item tabs menu">
-  <a routerLink="home"  routerLinkActive="active" class="item">Home</a>
-  <a routerLink="users" routerLinkActive="active" class="item">User</a>
-  <a routerLink="admin" routerLinkActive="active" class="item">Administration</a>
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a routerLink="home"  routerLinkActive="active" class="item">Home</a>
+    <a routerLink="users" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">User</a>
+    <a routerLink="admin" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Administration</a>
+    <div class="right menu">
+      <div class="item" *ngIf="!auth.isAuthenticated()">
+        <a routerLink="home" (click)="auth.login()" routerLinkActive="active" class="ui primary button">Log In</a>
+      </div>
+      <div class="item" *ngIf="auth.isAuthenticated()">
+        <a routerLink="home" (click)="auth.logout()" routerLinkActive="active" class="ui button">Log Out</a>
+      </div>
+    </div>
+    <a routerLink="profile" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Profile</a>
+  </div>
 </div>
-<router-outlet></router-outlet>
+<!-- Page Contents -->
+<div class="pusher" style="margin-top:60px;">
+  <div class="ui vertical masthead segment">
+    <router-outlet></router-outlet>
+  </div>
+</div>

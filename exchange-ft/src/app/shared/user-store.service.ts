@@ -20,11 +20,12 @@ export class UserStoreService {
 
   constructor(private http: Http) {
     this.headers.append('Content-Type', 'application/json');
-    this.headers.append(environment.authorizationkey, environment.authorizationvalue);
+    // this.headers.append(environment.authorizationkey, environment.authorizationvalue);
+    this.headers.append(environment.authorizationkey, localStorage.getItem('access_token'));
   }
 
   private errorHandler(error: Error | any): Observable<any> {
-    alert(error);
+    // alert(error);
     return Observable.throw(error);
   }
 
@@ -65,9 +66,7 @@ export class UserStoreService {
   }
 
   remove(userId: string): Observable<any> {
-
     // console.log(userId);
-
     return this.http
       .delete(`${this.api}/users/${userId}`, { headers: this.headers })
       .catch(this.errorHandler);

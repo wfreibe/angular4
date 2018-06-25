@@ -6,12 +6,17 @@ import { AppComponent } from './app.component';
 import { UserStoreService } from './shared/user-store.service';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { AuthService} from './auth/auth.service';
+import { CallbackComponent } from './callback.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    CallbackComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,8 @@ import { SearchComponent } from './search/search.component';
   ],
   providers: [
     UserStoreService,
-    { provide: LOCALE_ID, useValue: 'de'}
+    { provide: LOCALE_ID, useValue: 'de'},
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

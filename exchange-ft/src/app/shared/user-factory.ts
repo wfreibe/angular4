@@ -21,6 +21,5 @@ export class UserFactory {
       rawUser.portraitId
       // [new Thumbnail('https://www.shareicon.net/data/128x128/2015/09/24/106427_man_512x512.png', 'Vorname Nachname')],
     );
-
   }
 }

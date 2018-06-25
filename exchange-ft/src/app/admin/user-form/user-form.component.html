@@ -1,56 +1,59 @@
-<h1>Userformular</h1>
-<form class="ui large form"
-      [formGroup]="myForm"
-      (ngSubmit)="submitForm()">
-  <div class="field">
-    <label>Screen Name</label>
-    <input formControlName="screenName">
-    <div *ngIf="errors.screenName" class="ui negative message">
-      {{ errors.screenName }}
+<div class="ui container">
+  <h1 *ngIf="user.userId">User editieren</h1>
+  <h1 *ngIf="!user.userId">User anlegen</h1>
+  <form class="ui large form"
+        [formGroup]="myForm"
+        (ngSubmit)="submitForm()">
+    <div class="field">
+      <label>Screen Name</label>
+      <input formControlName="screenName">
+      <div *ngIf="errors.screenName" class="ui negative message">
+        {{ errors.screenName }}
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>E-Mail Adresse</label>
-    <input formControlName="emailAddress">
-    <div *ngIf="errors.emailAddress" class="ui negative message">
-      {{ errors.emailAddress }}
+    <div class="field">
+      <label>E-Mail Adresse</label>
+      <input formControlName="emailAddress">
+      <div *ngIf="errors.emailAddress" class="ui negative message">
+        {{ errors.emailAddress }}
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>Greeting</label>
-    <input formControlName="greeting">
-    <div *ngIf="errors.greeting" class="ui negative message">
-      {{ errors.greeting }}
+    <div class="field">
+      <label>Greeting</label>
+      <input formControlName="greeting">
+      <div *ngIf="errors.greeting" class="ui negative message">
+        {{ errors.greeting }}
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>Vorname</label>
-    <input formControlName="firstName">
-    <div *ngIf="errors.firstName" class="ui negative message">
-      {{ errors.firstName }}
+    <div class="field">
+      <label>Vorname</label>
+      <input formControlName="firstName">
+      <div *ngIf="errors.firstName" class="ui negative message">
+        {{ errors.firstName }}
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>Nachname</label>
-    <input formControlName="lastName">
-    <div *ngIf="errors.lastName" class="ui negative message">
-      {{ errors.lastName }}
+    <div class="field">
+      <label>Nachname</label>
+      <input formControlName="lastName">
+      <div *ngIf="errors.lastName" class="ui negative message">
+        {{ errors.lastName }}
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>Beruf</label>
-    <input formControlName="jobTitle">
-    <div *ngIf="errors.jobTitle" class="ui negative message">
-      {{ errors.jobTitle }}
+    <div class="field">
+      <label>Beruf</label>
+      <input formControlName="jobTitle">
+      <div *ngIf="errors.jobTitle" class="ui negative message">
+        {{ errors.jobTitle }}
+      </div>
     </div>
-  </div>
 
-  <input formControlName="userId" type="hidden">
+    <input formControlName="userId" type="hidden">
 
-  <button type="submit" class="ui button" [disabled]="myForm.invalid">Speichern</button>
-</form>
+    <button type="submit" class="ui button" [disabled]="myForm.invalid">Speichern</button>
+  </form>
+</div>

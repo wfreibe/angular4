@@ -1,56 +1,61 @@
-<div class="ui grid" *ngIf="user">
+<div class="ui container">
+  <div class="ui grid" *ngIf="user">
 
-  <div class="three wide column" style="margin:20px;">
-    <img class="ui small images" [src]="getUserImage()">
-  </div>
+    <div class="three wide column" style="margin:20px;">
+      <img class="ui small images" [src]="getUserImage()">
+    </div>
 
-  <div class="twelve wide column">
+    <div class="eight wide column">
+      <h1 class="ui header">{{ user?.screenName }}</h1>
+      <h3 class="ui header">{{ user?.emailAddress }}</h3>
 
-    <h1 class="ui header">{{ user?.screenName }}</h1>
-    <h3 class="ui header">{{ user?.emailAddress }}</h3>
+      <div class="ui divider"></div>
 
-    <div class="ui divider"></div>
-
-    <div class="ui grid">
-      <div class="four wide column">
-        <h4 class="ui header">User Id</h4>
-        {{ user?.userId }}
-        <h4 class="ui header">Contact Id</h4>
-        {{ user?.contactId }}
+      <div class="ui grid">
+        <div class="four wide column">
+          <h4 class="ui header">User Id</h4>
+          {{ user?.userId }}
+          <h4 class="ui header">Contact Id</h4>
+          {{ user?.contactId }}
+        </div>
+        <div class="four wide column">
+          <h4 class="ui header">Rating</h4>
+          <i *ngFor="let r of getRating(user?.rating)" class="yellow star icon"></i>
+        </div>
       </div>
 
-      <div class="four wide column">
-        <h4 class="ui header">Rating</h4>
-        <i *ngFor="let r of getRating(user?.rating)" class="yellow star icon"></i>
+      <div class="ui divider"></div>
+
+      <div class="sixteen wide column">
+        <h4 class="ui header">Name</h4>
+        {{ user?.firstName }} {{ user?.lastName }}
       </div>
 
+      <div class="sixteen wide column">
+        <h4 class="ui header">Beruf</h4>
+        {{ user?.jobTitle }}
+      </div>
+      <div class="ui divider"></div>
+      <div class="eight wide column">
+        <button class="ui tiny red labeled icon button"
+                (click)="removeUser()">
+          <i class="remove icon"></i> User löschen
+        </button>
+
+        <a class="ui tiny yellow labeled icon button"
+           [routerLink]="['../../admin', user?.userId]">
+          <i class="write icon"></i> User bearbeiten
+        </a>
+      </div>
+
+
     </div>
 
-    <div class="ui divider"></div>
 
-    <div class="sixteen wide column">
-      <h4 class="ui header">Name</h4>
-      {{ user?.firstName }} {{ user?.lastName }}
-    </div>
-
-    <div class="sixteen wide column">
-      <h4 class="ui header">Beruf</h4>
-      {{ user?.jobTitle }}
-    </div>
 
   </div>
+
 
 </div>
-
-<button class="ui tiny red labeled icon button"
-        (click)="removeUser()">
-  <i class="remove icon"></i> User löschen
-</button>
-
-<a class="ui tiny yellow labeled icon button"
-   [routerLink]="['../../admin', user?.userId]">
-  <i class="write icon"></i> User bearbeiten
-</a>
-
 <!-- <img *ngFor="let thumbnail of user?.thumbnails" [src]="thumbnail.url">-->
 

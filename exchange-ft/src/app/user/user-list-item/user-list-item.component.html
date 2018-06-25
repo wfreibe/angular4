@@ -1,13 +1,18 @@
-<!-- user.thumbnail is not used! -->
-<!--<img class="ui tiny image"
-     *ngIf="user.thumbnails"
-     [src]="user.thumbnails[0].url"
-     excZoom>-->
-<img class="ui tiny image" [src]="getUserImage()" excZoom>
-
-<div class="content">
-  <div class="header">email: {{ user.emailAddress }}</div>
-  <div class="description">first name: {{ user.firstName }}</div>
-  <div class="extra">last name: {{ user.lastName }}</div>
-  <div class="extra">job: {{ user.jobTitle }}</div>
+<div class="column">
+  <div class="ui fluid card" style="width:300px;height:250px;margin:10px;background:whitesmoke;">
+    <div style="height:100px;">
+      <img class="ui tiny image" [src]="getUserImage()" excZoom style="height:auto;width:auto;max-height:100px;background:none;">
+    </div>
+    <div class="content">
+      <a class="header">{{ user.firstName }} {{ user.lastName }}</a><br>
+      <div class="meta">
+        <span class="date">User id: {{ user.contactId }}</span><br>
+        <span class="date">{{ user.greeting}}</span>
+      </div>
+      <div class="description">{{ user.jobTitle }}&nbsp;</div>
+      <div class="description"><i class="mail icon"></i> {{ user.emailAddress }}</div>
+    </div>
+  </div>
 </div>
+<!--<img class="ui tiny image" *ngIf="user.thumbnails" [src]="user.thumbnails[0].url" excZoom>-->
+
