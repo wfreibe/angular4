@@ -41,6 +41,17 @@ export class UserStoreService {
       .catch(this.errorHandler);
   }
 
+  getOrgUsers(orgId: string): Observable<Array<User>> {
+    return this.http
+      .get(`${this.api}/organizations/${orgId}/users`, { headers: this.headers })
+      .retry(3)
+      .map(response => response.json())
+      .map(rawUsers => rawUsers
+        .map(rawUser => UserFactory.fromObject(rawUser))
+      )
+      .catch(this.errorHandler);
+  }
+
   getAllSearch(searchTerm: string): Observable<Array<User>> {
     // debugger
     return this.http

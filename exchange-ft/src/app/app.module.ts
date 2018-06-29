@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { AuthService} from './auth/auth.service';
 import { CallbackComponent } from './callback.component';
 import { ProfileComponent } from './profile/profile.component';
+import {OrganizationStoreService} from './shared/organization-store.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   providers: [
     UserStoreService,
+    OrganizationStoreService,
     { provide: LOCALE_ID, useValue: 'de'},
     AuthService
   ],

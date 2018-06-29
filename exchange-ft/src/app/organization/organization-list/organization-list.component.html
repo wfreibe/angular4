@@ -1,0 +1,12 @@
+<div class="ui middle aligned selection divided list">
+  <div class="ui three column grid">
+    <a class="exc-organization-list-item item"
+       *ngFor="let b of organizations"
+       [organization]="b"
+       [routerLink]="b.organizationId"></a>
+  </div>
+</div>
+<div *ngIf="!organizations" class="ui active dimmer">
+  <div class="ui large text loader">Daten werden geladen...</div>
+</div>
+<p *ngIf="organizations && !organizations.length">Es wurden noch keine Organisationen eingetragen.</p>
