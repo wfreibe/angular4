@@ -35,5 +35,16 @@ export class OrganizationStoreService {
           .map(rawOrganization => OrganizationFactory.fromObject(rawOrganization))
         )
         .catch(this.errorHandler);
-    }
+  }
+
+  getFirstOrganization(email: string): Observable<Array<Organization>> {
+    return this.http
+      .get(`${this.api}/users/${email}/organizations/first`, { headers: this.headers })
+      .retry(3)
+      .map(response => response.json())
+      .map(rawOrganizations => rawOrganizations
+        .map(rawOrganization => OrganizationFactory.fromObject(rawOrganization))
+      )
+      .catch(this.errorHandler);
+  }
 }

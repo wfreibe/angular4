@@ -20,9 +20,9 @@ export class ProfileComponent implements OnInit {
     } else {
       this.auth.getProfile((err, profile) => {
         this.profile = profile;
-        this.exchange_id_uri = environment.exchangeft_id_uri;
       });
     }
+    this.exchange_id_uri = environment.exchangeft_id_uri;
   }
 
 }

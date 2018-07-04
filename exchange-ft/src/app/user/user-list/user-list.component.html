@@ -1,5 +1,7 @@
 <div class="ui middle aligned selection divided list">
-    <!--<a class="exc-user-list-item item" *ngFor="let b of users" [user]="b" (click)="showDetails(b)"></a>-->
+    <div class="ui three column grid" style="margin: 10px;">
+      <h1 class="ui header"><div *ngFor="let o of organizations"> Organization: {{o.name}}</div></h1>
+    </div>
     <div class="ui three column grid">
     <a class="exc-user-list-item item"
        *ngFor="let b of users"

@@ -14,6 +14,4 @@ export class OrganizationListComponent implements OnInit {
   ngOnInit() {
     this.org.getAll().subscribe(res => this.organizations = res);
   }
-
 }
-
