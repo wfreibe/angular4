@@ -15,6 +15,7 @@ export class OrganizationListItemComponent implements OnInit{
   constructor(private org: OrganizationStoreService, public auth: AuthService) { }
   ngOnInit() {
     this.profile = this.auth.userProfile;
+    // console.log(this.profile);
     if (this.profile) {
       this.org.getFirstOrganization(this.profile.email).subscribe(res => this.first_organization = res);
     }

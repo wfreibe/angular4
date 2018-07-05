@@ -26,9 +26,9 @@ export class OrganizationStoreService {
     return Observable.throw(error);
   }
 
-  getAll(): Observable<Array<Organization>> {
+  getAll(email: string): Observable<Array<Organization>> {
     return this.http
-        .get(`${this.api}/users/wfreiberger@allplan.com/organizations`, { headers: this.headers })
+        .get(`${this.api}/users/${email}/organizations`, { headers: this.headers })
         .retry(3)
         .map(response => response.json())
         .map(rawOrganizations => rawOrganizations

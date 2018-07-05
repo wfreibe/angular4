@@ -4,6 +4,7 @@
     <a routerLink="home"  routerLinkActive="active" class="item">Home</a>
     <a routerLink="users" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">User</a>
     <a routerLink="organizations" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Organization</a>
+    <a routerLink="projects" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Project</a>
     <a routerLink="admin" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Administration</a>
     <div class="right menu">
       <div class="item" *ngIf="!auth.isAuthenticated()">

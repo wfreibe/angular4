@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Organization} from '../../shared/organization';
-import { OrganizationStoreService} from '../../shared/organization-store.service';
+import { Organization } from '../../shared/organization';
+import { AuthService } from '../../auth/auth.service';
+import { OrganizationStoreService } from '../../shared/organization-store.service';
 
 @Component({
   selector: 'exc-organization-list',
@@ -9,9 +10,13 @@ import { OrganizationStoreService} from '../../shared/organization-store.service
 export class OrganizationListComponent implements OnInit {
 
   organizations: Organization[];
-  constructor(private org: OrganizationStoreService) { }
+  profile: any;
+  constructor(private org: OrganizationStoreService, public auth: AuthService) { }
 
   ngOnInit() {
-    this.org.getAll().subscribe(res => this.organizations = res);
+    this.profile = this.auth.userProfile;
+    if (this.profile) {
+      this.org.getAll(this.profile.email).subscribe(res => this.organizations = res);
+    }
   }
 }
