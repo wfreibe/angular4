@@ -9,7 +9,7 @@ import { ProjectStoreService} from '../../shared/project-store.service';
 })
 export class ProjectListItemComponent implements OnInit {
   @Input() project: Project;
-  constructor(private pro: ProjectStoreService) { }
+  constructor() { }
   ngOnInit() {}
 }
 

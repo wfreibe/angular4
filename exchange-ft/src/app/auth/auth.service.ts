@@ -49,6 +49,8 @@ export class AuthService {
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
+        // write here the email to the localStorage !!
+        localStorage.setItem('email', this.userProfile.email);
       }
       cb(err, profile);
     });
@@ -67,6 +69,8 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('organizationId');
+    localStorage.removeItem('proFriendlyUrl');
     // Go back to the home route
     this.router.navigate(['/']);
   }

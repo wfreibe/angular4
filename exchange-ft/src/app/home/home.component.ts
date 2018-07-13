@@ -9,8 +9,11 @@ import { AuthService} from '../auth/auth.service';
 
       <div class="ui text container">
         <h1 class="ui inverted header">EXC FT</h1>
-        <h2>Die digitale Dokumentenmanagement-Applikation. Jetzt noch schneller und intuitiver.</h2>
-        <h2>Diese Projektstudie verwendet das Angular- und Lumenframework.</h2>
+        <h2 *ngIf="!auth.isAuthenticated()">Die digitale Dokumentenmanagement-Applikation. Jetzt noch schneller und intuitiver.</h2>
+        <h2 *ngIf="!auth.isAuthenticated()">Diese Projektstudie verwendet das Angular- und Lumenframework.</h2>
+        <br><br>
+        <exc-organization-dropbox *ngIf="auth.isAuthenticated()" class="column"></exc-organization-dropbox>
+        <br><br>
         <a routerLink="../users" *ngIf="auth.isAuthenticated()" class="ui red button">
           Userliste ansehen
           <i class="right arrow icon"></i>

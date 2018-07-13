@@ -8,7 +8,6 @@ import { ProjectStoreService} from '../../shared/project-store.service';
   templateUrl: './project-list.component.html'
 })
 export class ProjectListComponent implements OnInit {
-
   projects: Project[];
   profile: any;
   orgTreePath: string;

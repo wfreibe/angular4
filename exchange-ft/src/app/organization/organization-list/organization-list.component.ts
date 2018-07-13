@@ -16,7 +16,12 @@ export class OrganizationListComponent implements OnInit {
   ngOnInit() {
     this.profile = this.auth.userProfile;
     if (this.profile) {
-      this.org.getAll(this.profile.email).subscribe(res => this.organizations = res);
+      if (localStorage.getItem('organizationId') !== null) {
+        this.org.getOrganization(this.profile.email, localStorage.getItem('organizationId')).subscribe(res => this.organizations = res);
+      } else {
+        // this.org.getAll(this.profile.email).subscribe(res => this.organizations = res);
+        this.org.getFirstOrganization(this.profile.email).subscribe(res => this.organizations = res);
+      }
     }
   }
 }

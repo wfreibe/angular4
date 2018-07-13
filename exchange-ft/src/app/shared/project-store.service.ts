@@ -34,7 +34,7 @@ export class ProjectStoreService {
 
   getFirstOrganizationProjects(email: string): Observable<Array<Project>> {
     return this.http
-      .get(`${this.api}/users/${email}/organizations/projects/first`, { headers: this.headers })
+      .get(`${this.api}/users/${email}/organizations/first/projects`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawProjects => rawProjects

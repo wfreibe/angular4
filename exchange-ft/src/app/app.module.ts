@@ -11,6 +11,8 @@ import { CallbackComponent } from './callback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrganizationStoreService } from './shared/organization-store.service';
 import { ProjectStoreService } from './shared/project-store.service';
+import { OrganizationDropboxComponent } from './organization-dropbox/organization-dropbox.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { ProjectStoreService } from './shared/project-store.service';
     HomeComponent,
     SearchComponent,
     CallbackComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrganizationDropboxComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     UserStoreService,

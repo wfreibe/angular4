@@ -1,0 +1,66 @@
+<div class="form-group">
+
+  <ng-container *ngIf="selectedOrgValue !== ''; then takeFlowWithoutFistOrg; else takeFlowWithFistOrg"></ng-container>
+
+  <ng-template #takeFlowWithoutFistOrg>
+      <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
+        <ng-container *ngFor="let org of organizations">
+          <ng-container *ngIf="selectedOrgValue === org.treePath; then selected; else notselected"></ng-container>
+          <ng-template #selected><option [value]="org.treePath" selected>{{org.name}}</option></ng-template>
+          <ng-template #notselected><option [value]="org.treePath">{{org.name}}</option></ng-template>
+        </ng-container>
+      </select>
+  </ng-template>
+
+  <ng-template #takeFlowWithFistOrg>
+    <ng-container *ngFor="let fo of first_organization">
+      <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
+        <ng-container *ngFor="let org of organizations">
+          <ng-container *ngIf="fo.name === org.name; then selected; else notselected"></ng-container>
+          <ng-template #selected><option [value]="org.treePath" selected>{{org.name}}</option></ng-template>
+          <ng-template #notselected><option [value]="org.treePath">{{org.name}}</option></ng-template>
+        </ng-container>
+      </select>
+    </ng-container>
+  </ng-template>
+
+
+  <br><br>
+
+  <p *ngIf="projects && !projects.length">Es wurden noch keine Projekte eingetragen.</p>
+
+  <ng-container *ngIf="projects && projects.length">
+  <select #select (change)="onChangeProBox(select.value)" class="form-control ui fluid dropdown" id="project" required>
+    <ng-container *ngFor="let pro of projects">
+      <ng-container *ngIf="selectedProValue === pro.friendlyURL; then selected; else notselected"></ng-container>
+        <ng-template #selected><option [value]="pro.friendlyURL" selected>{{pro.name}}</option></ng-template>
+        <ng-template #notselected><option [value]="pro.friendlyURL">{{pro.name}}</option></ng-template>
+    </ng-container>
+  </select>
+  </ng-container>
+
+</div>
+
+<!-- https://toddmotto.com/angular-ngif-else-then +++ -->
+<!--
+<select #select [(ngModel)]="current" (change)="logDropdown(select.value)">
+    <option *ngFor="let item of list" [value]="item.id">{{item.name}}</option>
+</select>
+
+<div *ngFor="let fo of first_organization">
+    <select class="form-control" id="organizations" required>
+      <option *ngFor="let org of organizations" [value]="org">{{org.name}}</option>
+    </select>
+</div>
+
+<ng-container *ngFor="let fo of first_organization">
+  <select class="form-control ui fluid dropdown" id="organization" required>
+    <ng-container *ngFor="let org of organizations">
+      <ng-container
+        *ngIf="fo.name === org.name; then selected; else notselected"></ng-container>
+      <ng-template #selected><option (change)="change.emit(orgSelection.value)" #orgSelection [value]="org.organizationId" selected>{{org.name}}</option></ng-template>
+      <ng-template #notselected><option (change)="change.emit(orgSelection.value)" #orgSelection [value]="org.organizationId">{{org.name}}</option></ng-template>
+    </ng-container>
+  </select>
+</ng-container>
+-->
