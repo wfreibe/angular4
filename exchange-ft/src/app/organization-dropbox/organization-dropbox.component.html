@@ -1,20 +1,25 @@
 <div class="form-group">
 
-  <ng-container *ngIf="selectedOrgValue !== ''; then takeFlowWithoutFistOrg; else takeFlowWithFistOrg"></ng-container>
+  <div *ngIf="!organizations" class="ui active inverted dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
+
+  <ng-container *ngIf="selectedOrgValue !== null; then takeFlowWithoutFistOrg; else takeFlowWithFistOrg"></ng-container>
 
   <ng-template #takeFlowWithoutFistOrg>
       <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
         <ng-container *ngFor="let org of organizations">
-          <ng-container *ngIf="selectedOrgValue === org.treePath; then selected; else notselected"></ng-container>
+          <ng-container *ngIf="'/'+selectedOrgValue+'/' === org.treePath; then selected; else notselected"></ng-container>
           <ng-template #selected><option [value]="org.treePath" selected>{{org.name}}</option></ng-template>
           <ng-template #notselected><option [value]="org.treePath">{{org.name}}</option></ng-template>
         </ng-container>
       </select>
   </ng-template>
 
+  <!--
   <ng-template #takeFlowWithFistOrg>
     <ng-container *ngFor="let fo of first_organization">
-      <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
+      <select #select [(ngModel)]="current" (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
         <ng-container *ngFor="let org of organizations">
           <ng-container *ngIf="fo.name === org.name; then selected; else notselected"></ng-container>
           <ng-template #selected><option [value]="org.treePath" selected>{{org.name}}</option></ng-template>
@@ -23,9 +28,27 @@
       </select>
     </ng-container>
   </ng-template>
+  -->
+  <!--
+  <ng-container *ngFor="let fo of first_organization as orgname">
+    {{fo.name}}
+  </ng-container>
+  -->
+
+  <ng-template #takeFlowWithFistOrg>
+      <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
+        <ng-container *ngFor="let org of organizations">
+          <option [value]="org.treePath">{{org.name}}</option>
+        </ng-container>
+      </select>
+  </ng-template>
 
 
   <br><br>
+
+  <div *ngIf="!projects" class="ui active inverted dimmer">
+    <div class="ui large text loader">Daten werden geladen...</div>
+  </div>
 
   <p *ngIf="projects && !projects.length">Es wurden noch keine Projekte eingetragen.</p>
 

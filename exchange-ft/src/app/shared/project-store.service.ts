@@ -21,9 +21,9 @@ export class ProjectStoreService {
     return Observable.throw(error);
   }
 
-  getAll(email: string, treePath: string): Observable<Array<Project>> {
+  getAll(treePath: string): Observable<Array<Project>> {
     return this.http
-      .get(`${this.api}/users/${email}/organizations/${treePath}/projects`, { headers: this.headers })
+      .get(`${this.api}/user/organizations/${treePath}/projects`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawProjects => rawProjects
@@ -32,9 +32,9 @@ export class ProjectStoreService {
       .catch(this.errorHandler);
   }
 
-  getFirstOrganizationProjects(email: string): Observable<Array<Project>> {
+  getFirstOrganizationProjects(): Observable<Array<Project>> {
     return this.http
-      .get(`${this.api}/users/${email}/organizations/first/projects`, { headers: this.headers })
+      .get(`${this.api}/user/organizations/first/projects`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawProjects => rawProjects

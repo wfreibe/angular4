@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { Project} from '../../shared/project';
-import { AuthService } from '../../auth/auth.service';
 import { ProjectStoreService} from '../../shared/project-store.service';
 
 @Component({
@@ -9,15 +8,14 @@ import { ProjectStoreService} from '../../shared/project-store.service';
 })
 export class ProjectListComponent implements OnInit {
   projects: Project[];
-  profile: any;
   orgTreePath: string;
-  constructor(private pro: ProjectStoreService, public auth: AuthService) { }
+  constructor(private pro: ProjectStoreService) { }
   ngOnInit() {
-    this.profile = this.auth.userProfile;
     // this.orgTreePath = '34679';
-    if (this.profile) {
-      // this.pro.getAll(this.profile.email, this.orgTreePath).subscribe(res => this.projects = res);
-      this.pro.getFirstOrganizationProjects(this.profile.email).subscribe(res => this.projects = res);
+    if (localStorage.getItem('organizationId') !== null) {
+      this.pro.getAll(localStorage.getItem('organizationId')).subscribe(res => this.projects = res);
+    } else {
+      this.pro.getFirstOrganizationProjects().subscribe(res => this.projects = res);
     }
   }
 }

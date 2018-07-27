@@ -1,7 +1,7 @@
 <div class="ui container">
   <h1 *ngIf="user.userId">User editieren</h1>
   <h1 *ngIf="!user.userId">User anlegen</h1>
-  <form class="ui large form inverted"
+  <form class="ui large form"
         [formGroup]="myForm"
         (ngSubmit)="submitForm()">
     <div class="field">

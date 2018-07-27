@@ -1,9 +1,37 @@
-<div class="column">
-    <div class="ui fluid card" style="width:300px;height:250px;margin:10px;background:whitesmoke;">
+<ng-container *ngIf="'/'+selectedOrgValue+'/' === organization.treePath; then selected; else notselected"></ng-container>
+<ng-template #selected>
+  <div class="column">
+    <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
       <div class="content">
         <a class="header">{{ organization.name }}</a><br>
         <div class="description">{{ organization.treePath }}</div>
         <div class="description">{{ organization.comments }}</div>
       </div>
     </div>
-</div>
+  </div>
+</ng-template>
+<ng-template #notselected>
+  <ng-container *ngIf="first==true && selectedOrgValue==null; then selected; else notselected"></ng-container>
+  <ng-template #selected>
+    <div class="column">
+      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
+        <div class="content">
+          <a class="header">{{ organization.name }}</a><br>
+          <div class="description">{{ organization.treePath }}</div>
+          <div class="description">{{ organization.comments }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #notselected>
+    <div class="column">
+      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:whitesmoke;">
+        <div class="content">
+          <a class="header">{{ organization.name }}</a><br>
+          <div class="description">{{ organization.treePath }}</div>
+          <div class="description">{{ organization.comments }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

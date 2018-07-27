@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
 
   removeUser() {
     if (confirm('User wirklich löschen?')) {
-      this.us.remove(this.user.userId +'')
+      this.us.remove(this.user.userId + '')
         .subscribe(res => this.router.navigate(['../'], { relativeTo: this.route }));
     }
   }

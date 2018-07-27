@@ -26,9 +26,9 @@ export class OrganizationStoreService {
     return Observable.throw(error);
   }
 
-  getAll(email: string): Observable<Array<Organization>> {
+  getAll(): Observable<Array<Organization>> {
     return this.http
-        .get(`${this.api}/users/${email}/organizations`, { headers: this.headers })
+        .get(`${this.api}/user/organizations`, { headers: this.headers })
         .retry(3)
         .map(response => response.json())
         .map(rawOrganizations => rawOrganizations
@@ -37,9 +37,9 @@ export class OrganizationStoreService {
         .catch(this.errorHandler);
   }
 
-  getFirstOrganization(email: string): Observable<Array<Organization>> {
+  getFirstOrganization(): Observable<Array<Organization>> {
     return this.http
-      .get(`${this.api}/users/${email}/organizations/first`, { headers: this.headers })
+      .get(`${this.api}/user/organizations/first`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawOrganizations => rawOrganizations
@@ -48,9 +48,9 @@ export class OrganizationStoreService {
       .catch(this.errorHandler);
   }
 
-  getOrganization(email: string, org: string): Observable<Array<Organization>> {
+  getOrganization(org: string): Observable<Array<Organization>> {
     return this.http
-      .get(`${this.api}/users/${email}/organizations/${org}`, { headers: this.headers })
+      .get(`${this.api}/user/organizations/${org}`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawOrganizations => rawOrganizations

@@ -31,6 +31,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'documents',
+    loadChildren: 'app/document/document.module#DocumentModule',
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule',
     canActivate: [AuthGuard]

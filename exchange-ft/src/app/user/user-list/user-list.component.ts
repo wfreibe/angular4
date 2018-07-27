@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../shared/user';
 import { UserStoreService } from '../../shared/user-store.service';
-import { AuthService } from '../../auth/auth.service';
 import { OrganizationStoreService } from '../../shared/organization-store.service';
 import { Organization } from '../../shared/organization';
 
@@ -13,14 +12,14 @@ export class UserListComponent implements OnInit {
 
   users: User[];
   organizations: Organization[];
-  profile: any;
-  constructor(private us: UserStoreService, public auth: AuthService, private org: OrganizationStoreService) {}
+  constructor(private us: UserStoreService, private org: OrganizationStoreService) {}
 
   ngOnInit() {
-    this.profile = this.auth.userProfile;
-    if (this.profile) {
-      this.us.getFirstOrganizationUsersByEmail(this.profile.email).subscribe(res => this.users = res);
-      this.org.getFirstOrganization(this.profile.email).subscribe(res => this.organizations = res);
+    if (localStorage.getItem('organizationId') !== null) {
+      this.us.getOrgUsers(localStorage.getItem('organizationId')).subscribe(res => this.users = res);
+    } else {
+      this.us.getFirstOrganizationUsers().subscribe(res => this.users = res);
     }
+    // this.org.getFirstOrganization().subscribe(res => this.organizations = res);
   }
 }

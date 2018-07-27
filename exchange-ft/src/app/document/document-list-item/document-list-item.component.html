@@ -1,0 +1,37 @@
+<ng-container *ngIf="selectedDocValue === document.fileEntryId + ''; then selected; else notselected"></ng-container>
+<ng-template #selected>
+  <div class="column">
+    <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
+      <div class="content">
+        <a class="header">{{ document.title }}</a><br>
+        <div class="description">{{ document.fileEntryId }}</div>
+        <div class="description">{{ document.modifiedDate }}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #notselected>
+  <ng-container *ngIf="first==true && selectedDocValue == null; then selected; else notselected"></ng-container>
+  <ng-template #selected>
+    <div class="column">
+      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
+        <div class="content">
+          <a class="header">{{ document.title }}</a><br>
+          <div class="description">{{ document.fileEntryId }}</div>
+          <div class="description">{{ document.modifiedDate }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #notselected>
+    <div class="column">
+      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:whitesmoke;">
+        <div class="content">
+          <a class="header">{{ document.title }}</a><br>
+          <div class="description">{{ document.fileEntryId }}</div>
+          <div class="description">{{ document.modifiedDate }}</div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ng-template>

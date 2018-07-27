@@ -49,8 +49,6 @@ export class AuthService {
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
-        // write here the email to the localStorage !!
-        localStorage.setItem('email', this.userProfile.email);
       }
       cb(err, profile);
     });

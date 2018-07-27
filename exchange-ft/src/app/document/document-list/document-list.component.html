@@ -1,0 +1,13 @@
+<div class="ui middle aligned selection divided list">
+  <div class="ui three column grid">
+    <a class="exc-document-list-item item"
+       *ngFor="let d of documents, first as firstIndex"
+       [document]="d"
+       [first] = "firstIndex"
+       [routerLink]="d.fileEntryId"></a>
+  </div>
+</div>
+<div *ngIf="!documents" class="ui active inverted dimmer">
+  <div class="ui large text loader">Daten werden geladen...</div>
+</div>
+<p *ngIf="documents && !documents.length">Es wurden noch keine Documente eingetragen.</p>

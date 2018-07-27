@@ -1,6 +1,5 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 import {Organization} from '../shared/organization';
-import {AuthService} from '../auth/auth.service';
 import {OrganizationStoreService} from '../shared/organization-store.service';
 import {ProjectStoreService} from '../shared/project-store.service';
 import {Project} from '../shared/project';
@@ -12,31 +11,29 @@ import {Project} from '../shared/project';
 export class OrganizationDropboxComponent implements OnInit {
 
   organizations: Organization[];
-  first_organization: Organization[];
+  // first_organization: Organization[];
   projects: Project[];
-  profile: any;
   selectedProValue: string;
   selectedOrgValue: string;
 
-  constructor(private org: OrganizationStoreService, private pro: ProjectStoreService, public auth: AuthService) { }
+  constructor(private org: OrganizationStoreService, private pro: ProjectStoreService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('email') !== null) {
-      this.org.getAll(localStorage.getItem('email')).subscribe(res => this.organizations = res);
-      if (localStorage.getItem('proFriendlyUrl') !== '') {
+      this.org.getAll().subscribe(res => this.organizations = res);
+      if (localStorage.getItem('proFriendlyUrl') !== null) {
         this.selectedProValue = localStorage.getItem('proFriendlyUrl');
       }
-      // if organization in dropdown box was selected ...
+      // if organization in dropdown box was selected and comming back to HOME menu ...
       if (localStorage.getItem('organizationId') !== null) {
         this.selectedOrgValue = localStorage.getItem('organizationId');
-        this.pro.getAll(localStorage.getItem('email'), localStorage.getItem('organizationId')).
+        console.log(this.selectedOrgValue);
+        this.pro.getAll(localStorage.getItem('organizationId')).
         subscribe(res => this.projects = res);
       } else {
         // on displaying the page the first time ...
-        this.org.getFirstOrganization(localStorage.getItem('email')).subscribe(res => this.first_organization = res);
-        this.pro.getFirstOrganizationProjects(localStorage.getItem('email')).subscribe(res => this.projects = res);
+        // this.org.getFirstOrganization().subscribe(res => this.first_organization = res);
+        this.pro.getFirstOrganizationProjects().subscribe(res => this.projects = res);
       }
-    }
   }
 
   onChangeOrgBox(treePath: string): void {
@@ -45,7 +42,8 @@ export class OrganizationDropboxComponent implements OnInit {
     treePath = treePath.replace('/', '');
     treePath = treePath.replace('/', '');
     localStorage.setItem('organizationId', treePath);
-    this.pro.getAll(localStorage.getItem('email'), treePath).subscribe(res => this.projects = res);
+    localStorage.removeItem('proFriendlyUrl');
+    this.pro.getAll(treePath).subscribe(res => this.projects = res);
   }
 
   onChangeProBox(friendlyURL: string): void {

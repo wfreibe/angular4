@@ -63,9 +63,9 @@ export class UserStoreService {
       .catch(this.errorHandler);
   }
 
-  getFirstOrganizationUsersByEmail(email: string): Observable<Array<User>> {
+  getFirstOrganizationUsers(): Observable<Array<User>> {
     return this.http
-      .get(`${this.api}/organizations/first/users/email/${email}`, { headers: this.headers })
+      .get(`${this.api}/organizations/first/users`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawUsers => rawUsers

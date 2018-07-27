@@ -13,6 +13,7 @@ import { OrganizationStoreService } from './shared/organization-store.service';
 import { ProjectStoreService } from './shared/project-store.service';
 import { OrganizationDropboxComponent } from './organization-dropbox/organization-dropbox.component';
 import { FormsModule } from '@angular/forms';
+import {DocumentStoreService} from './shared/document-store.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     UserStoreService,
     OrganizationStoreService,
     ProjectStoreService,
+    DocumentStoreService,
     { provide: LOCALE_ID, useValue: 'de'},
     AuthService
   ],

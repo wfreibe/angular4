@@ -6,6 +6,12 @@ import { Organization} from '../../shared/organization';
 })
 export class OrganizationListItemComponent implements OnInit {
   @Input() organization: Organization;
+  @Input() first: any;
+  selectedOrgValue: string;
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    if (localStorage.getItem('organizationId') !== null) {
+      this.selectedOrgValue = localStorage.getItem('organizationId');
+    }
+  }
 }

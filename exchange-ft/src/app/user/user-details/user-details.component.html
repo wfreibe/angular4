@@ -6,18 +6,18 @@
     </div>
 
     <div class="eight wide column">
-      <h1 class="ui header inverted">{{ user?.screenName }}</h1>
-      <h3 class="ui header inverted">{{ user?.emailAddress }}</h3>
+      <h1 class="ui header">{{ user?.screenName }}</h1>
+      <h3 class="ui header">{{ user?.emailAddress }}</h3>
 
-      <div class="ui divider inverted"></div>
+      <div class="ui divider"></div>
 
       <div class="ui grid">
         <div class="eight wide column">
-          <h4 class="ui header inverted">User Id: {{ user?.userId }}</h4>
-          <h4 class="ui header inverted">Contact Id: {{ user?.contactId }}</h4>
+          <h4 class="ui header">User Id: {{ user?.userId }}</h4>
+          <h4 class="ui header">Contact Id: {{ user?.contactId }}</h4>
         </div>
         <div class="four wide column">
-          <h4 class="ui header inverted">Rating</h4>
+          <h4 class="ui header">Rating</h4>
           <i *ngFor="let r of getRating(user?.rating)" class="yellow star icon"></i>
         </div>
       </div>
@@ -26,8 +26,8 @@
 
       <div class="ui grid">
         <div class="eight wide column">
-          <h4 class="ui header inverted">Name: {{ user?.firstName }} {{ user?.lastName }}</h4>
-          <h4 class="ui header inverted">Beruf: {{ user?.jobTitle }}</h4>
+          <h4 class="ui header">Name: {{ user?.firstName }} {{ user?.lastName }}</h4>
+          <h4 class="ui header">Beruf: {{ user?.jobTitle }}</h4>
         </div>
       </div>
 

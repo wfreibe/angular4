@@ -1,12 +1,13 @@
 <div class="ui middle aligned selection divided list">
   <div class="ui three column grid">
     <a class="exc-project-list-item item"
-       *ngFor="let p of projects"
+       *ngFor="let p of projects, first as firstIndex"
        [project]="p"
+       [first] = "firstIndex"
        [routerLink]="p.groupId"></a>
   </div>
 </div>
-<div *ngIf="!projects" class="ui active dimmer">
+<div *ngIf="!projects" class="ui active inverted dimmer">
   <div class="ui large text loader">Daten werden geladen...</div>
 </div>
 <p *ngIf="projects && !projects.length">Es wurden noch keine Projekte eingetragen.</p>
