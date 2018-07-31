@@ -11,7 +11,6 @@ export class ProjectListComponent implements OnInit {
   orgTreePath: string;
   constructor(private pro: ProjectStoreService) { }
   ngOnInit() {
-    // this.orgTreePath = '34679';
     if (localStorage.getItem('organizationId') !== null) {
       this.pro.getAll(localStorage.getItem('organizationId')).subscribe(res => this.projects = res);
     } else {

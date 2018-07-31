@@ -24,7 +24,7 @@ export class DocumentStoreService {
 
   getAll(friendlyURL: string): Observable<Array<Document>> {
     return this.http
-      .get(`${this.api}/user/organization/projects/${friendlyURL}/documents`, { headers: this.headers })
+      .get(`${this.api}/user/organization/projects${friendlyURL}/documents`, { headers: this.headers })
       .retry(3)
       .map(response => response.json())
       .map(rawDocuments => rawDocuments
@@ -33,4 +33,14 @@ export class DocumentStoreService {
       .catch(this.errorHandler);
   }
 
+  getFirstOrganizationProjectDocuments(): Observable<Array<Document>> {
+    return this.http
+      .get(`${this.api}/user/organization/projects/first/documents`, { headers: this.headers })
+      .retry(3)
+      .map(response => response.json())
+      .map(rawDocuments => rawDocuments
+        .map(rawDocument => DocumentFactory.fromObject(rawDocument))
+      )
+      .catch(this.errorHandler);
+  }
 }

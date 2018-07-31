@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Document} from '../../shared/document';
 
 @Component({
-  selector: 'a.exc-document-list-item',
+  selector: 'tr.exc-document-list-item',
   templateUrl: './document-list-item.component.html'
 })
 export class DocumentListItemComponent implements OnInit {

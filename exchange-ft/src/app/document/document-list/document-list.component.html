@@ -1,13 +1,35 @@
-<div class="ui middle aligned selection divided list">
-  <div class="ui three column grid">
-    <a class="exc-document-list-item item"
+<h4 class="left aligned">{{getProjectName()}}</h4>
+<table class="ui celled table">
+  <thead>
+  <tr><th>Dokumentenname</th>
+    <th>Fileentry ID</th>
+    <th>Upload Datum</th>
+  </tr></thead>
+  <tbody>
+    <tr class="exc-document-list-item item"
        *ngFor="let d of documents, first as firstIndex"
        [document]="d"
        [first] = "firstIndex"
-       [routerLink]="d.fileEntryId"></a>
-  </div>
-</div>
+       [routerLink]="d.fileEntryId"></tr>
+  </tbody>
+  <tfoot>
+  <tr><th colspan="3">
+    <div class="ui right floated pagination menu">
+      <a class="icon item">
+        <i class="left chevron icon"></i>
+      </a>
+      <a class="item">1</a>
+      <a class="item">2</a>
+      <a class="item">3</a>
+      <a class="item">4</a>
+      <a class="icon item">
+        <i class="right chevron icon"></i>
+      </a>
+    </div>
+  </th>
+  </tr></tfoot>
+</table>
 <div *ngIf="!documents" class="ui active inverted dimmer">
   <div class="ui large text loader">Daten werden geladen...</div>
 </div>
-<p *ngIf="documents && !documents.length">Es wurden noch keine Documente eingetragen.</p>
+<p *ngIf="documents && !documents.length">Es wurden noch keine Dokumente eingetragen.</p>

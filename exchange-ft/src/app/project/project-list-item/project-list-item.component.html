@@ -1,7 +1,7 @@
 <ng-container *ngIf="selectedProValue === project.friendlyURL; then selected; else notselected"></ng-container>
 <ng-template #selected>
   <div class="column">
-    <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
+    <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:#7da7d9;">
       <div class="content">
         <a class="header">{{ project.name }}</a><br>
         <div class="description">{{ project.friendlyURL }}</div>
@@ -13,7 +13,7 @@
   <ng-container *ngIf="first==true && selectedProValue == null; then selected; else notselected"></ng-container>
   <ng-template #selected>
     <div class="column">
-      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:cornflowerblue;">
+      <div class="ui fluid card" style="width:300px;height:150px;margin:10px;background:#7da7d9;">
         <div class="content">
           <a class="header">{{ project.name }}</a><br>
           <div class="description">{{ project.friendlyURL }}</div>

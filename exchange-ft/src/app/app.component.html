@@ -1,13 +1,14 @@
 <!-- Following Menu -->
-<div class="ui large top fixed hidden menu">
+<div class="ui medium top fixed hidden menu">
   <div class="ui container">
-    <div style="margin-right: 50px;"><img src="assets/exchange-ft-logo.png"></div>
+    <div style="margin-right:5px; margin-top: 5px;"><img width="150" src="assets/exchange-ft-logo.png"></div>
     <a routerLink="home" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Home</a>
     <a routerLink="users" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Users</a>
     <a routerLink="organizations" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Organizations</a>
     <a routerLink="projects" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Projects</a>
     <a routerLink="documents" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Documents</a>
     <a routerLink="admin" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Administration</a>
+    <a routerLink="profile" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Profile</a>
     <div class="right menu">
       <div class="item" *ngIf="!auth.isAuthenticated()">
         <a routerLink="home" (click)="auth.login()" routerLinkActive="active" class="ui primary button">Log In</a>
@@ -16,7 +17,9 @@
         <a routerLink="home" (click)="auth.logout()" routerLinkActive="active" class="ui button">Log Out</a>
       </div>
     </div>
-    <a routerLink="profile" *ngIf="auth.isAuthenticated()" routerLinkActive="active" class="item">Profile</a>
+    <div class="item" *ngIf="auth.isAuthenticated()">
+      <i class="building outline icon"></i><span style="font-weight: bolder;font-size: larger">{{getOrganizationName()}}</span>
+    </div>
   </div>
 </div>
 <!-- Page Contents -->

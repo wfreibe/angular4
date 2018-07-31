@@ -16,25 +16,6 @@
       </select>
   </ng-template>
 
-  <!--
-  <ng-template #takeFlowWithFistOrg>
-    <ng-container *ngFor="let fo of first_organization">
-      <select #select [(ngModel)]="current" (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
-        <ng-container *ngFor="let org of organizations">
-          <ng-container *ngIf="fo.name === org.name; then selected; else notselected"></ng-container>
-          <ng-template #selected><option [value]="org.treePath" selected>{{org.name}}</option></ng-template>
-          <ng-template #notselected><option [value]="org.treePath">{{org.name}}</option></ng-template>
-        </ng-container>
-      </select>
-    </ng-container>
-  </ng-template>
-  -->
-  <!--
-  <ng-container *ngFor="let fo of first_organization as orgname">
-    {{fo.name}}
-  </ng-container>
-  -->
-
   <ng-template #takeFlowWithFistOrg>
       <select #select (change)="onChangeOrgBox(select.value)" class="form-control ui fluid dropdown" id="organization" required>
         <ng-container *ngFor="let org of organizations">
@@ -42,7 +23,6 @@
         </ng-container>
       </select>
   </ng-template>
-
 
   <br><br>
 
@@ -65,25 +45,4 @@
 </div>
 
 <!-- https://toddmotto.com/angular-ngif-else-then +++ -->
-<!--
-<select #select [(ngModel)]="current" (change)="logDropdown(select.value)">
-    <option *ngFor="let item of list" [value]="item.id">{{item.name}}</option>
-</select>
 
-<div *ngFor="let fo of first_organization">
-    <select class="form-control" id="organizations" required>
-      <option *ngFor="let org of organizations" [value]="org">{{org.name}}</option>
-    </select>
-</div>
-
-<ng-container *ngFor="let fo of first_organization">
-  <select class="form-control ui fluid dropdown" id="organization" required>
-    <ng-container *ngFor="let org of organizations">
-      <ng-container
-        *ngIf="fo.name === org.name; then selected; else notselected"></ng-container>
-      <ng-template #selected><option (change)="change.emit(orgSelection.value)" #orgSelection [value]="org.organizationId" selected>{{org.name}}</option></ng-template>
-      <ng-template #notselected><option (change)="change.emit(orgSelection.value)" #orgSelection [value]="org.organizationId">{{org.name}}</option></ng-template>
-    </ng-container>
-  </select>
-</ng-container>
--->

@@ -69,7 +69,8 @@ export class AuthService {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('organizationId');
     localStorage.removeItem('proFriendlyUrl');
-    // Go back to the home route
+    localStorage.removeItem('organizationName');
+    localStorage.removeItem('organizations');
     this.router.navigate(['/']);
   }
 
